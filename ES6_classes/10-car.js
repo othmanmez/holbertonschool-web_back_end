@@ -25,4 +25,4 @@ export default class Car {
     const Species = this.constructor[Symbol.species];
     return new Species();
   }
-} 
+}
