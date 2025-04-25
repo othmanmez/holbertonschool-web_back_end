@@ -1,32 +1,30 @@
 #!/usr/bin/env python3
-"""Concurrent coroutines example."""
+"""
+Import wait_random from the previous python file that you have written
+and write an async routine called wait_n that takes in 2 int arguments
+(in this order): n and max_delay. You will spawn wait_random n times
+with the specified max_delay.
+wait_n should return the list of all the delays (float values).
+The list of the delays should be in ascending order without
+using sort() because of concurrency.
+"""
 import asyncio
 from typing import List
-
 wait_random = __import__('0-basic_async_syntax').wait_random
 
 
 async def wait_n(n: int, max_delay: int) -> List[float]:
     """
-    Spawn wait_random n times with the specified max_delay.
-
-    Args:
-        n (int): Number of times to spawn wait_random
-        max_delay (int): Maximum delay in seconds
-
-    Returns:
-        List[float]: List of delays in ascending order
+    Let's execute multiple coroutines at the same time with async
     """
-    tasks = [wait_random(max_delay) for _ in range(n)]
-    delays = await asyncio.gather(*tasks)
+    delays = []
+    coroutines = []
+    for number_coroutines in range(n):
+        coroutines.append(wait_random(max_delay))
 
-    # Create a sorted list without using sort()
-    sorted_delays = []
-    remaining = delays.copy()
+    for coroutine in asyncio.as_completed(coroutines):
+        # as_completed order coroutines by end of excecution (fastest first)
+        delay = await coroutine
+        delays.append(delay)
 
-    while remaining:
-        min_delay = min(remaining)
-        sorted_delays.append(min_delay)
-        remaining.remove(min_delay)
-
-    return sorted_delays
+    return delays
