@@ -1,15 +1,8 @@
 #!/usr/bin/env python3
-
+"""Type-annotated function sum_list"""
 from typing import List
 
+
 def sum_list(input_list: List[float]) -> float:
-        """
-            Calculate the sum of a list of floats.
-                
-                    Args:
-                            input_list (List[float]): List of floats to sum
-                                    
-                                        Returns:
-                                                float: Sum of all elements in the list
-                                                    """
-                                                        return sum(input_list) 
+    """Return the sum of the list of floats."""
+    return sum(input_list)
