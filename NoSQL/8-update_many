@@ -1,3 +1,4 @@
+// Update all documents that don't match the criteria
 db.users.updateMany(
   { likes: { $ne: "bananas" } },
   { $set: { likes: "bananas" } }

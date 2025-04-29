@@ -1,3 +1,6 @@
+// Insert a document in the collection school
+db.school.insertOne({ name: "Holberton school" })
+
 db.users.insertOne({
   name: "John Doe",
   age: 30,

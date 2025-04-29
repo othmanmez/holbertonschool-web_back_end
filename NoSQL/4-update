@@ -1,4 +1,5 @@
-db.users.updateOne(
-  { name: "John Doe" },
-  { $set: { age: 31 } }
+// Update a document in the collection school
+db.school.updateOne(
+  { name: "Holberton school" },
+  { $set: { address: "972 Mission street" } }
 ) 
