@@ -42,23 +42,25 @@ class Server:
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
         """
         Get hypermedia pagination information based on index.
-        
+
         Args:
             index (int): The start index of the return page
             page_size (int): The number of items per page
-            
+
         Returns:
             Dict: A dictionary containing pagination information
         """
         indexed_dataset = self.indexed_dataset()
-        assert index is None or (isinstance(index, int) and 0 <= index < len(indexed_dataset)), "index out of range"
-        
+        assert (index is None or
+               (isinstance(index, int) and index < len(indexed_dataset))), \
+            "index out of range"
+
         if index is None:
             index = 0
-            
+
         data = []
         next_index = index
-        
+
         # Get the data for the current page
         for i in range(page_size):
             if next_index in indexed_dataset:
@@ -66,10 +68,11 @@ class Server:
                 next_index += 1
             else:
                 break
-                
+
+        next_idx = next_index if next_index < len(indexed_dataset) else None
         return {
             'index': index,
             'data': data,
             'page_size': page_size,
-            'next_index': next_index if next_index < len(indexed_dataset) else None
-        } 
+            'next_index': next_idx
+        }
