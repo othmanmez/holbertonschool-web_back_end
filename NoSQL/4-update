@@ -1,0 +1,4 @@
+db.users.updateOne(
+  { name: "John Doe" },
+  { $set: { age: 31 } }
+) 

@@ -1,0 +1,4 @@
+db.users.updateMany(
+  { likes: { $ne: "bananas" } },
+  { $set: { likes: "bananas" } }
+) 
