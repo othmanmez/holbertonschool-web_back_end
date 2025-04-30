@@ -1,2 +1,0 @@
-// Delete all documents that match the criteria
-db.users.deleteMany({ likes: "bananas" }) 
