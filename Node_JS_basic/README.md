@@ -1,54 +1,82 @@
-# 📘 Node.js Basics
+# Node.js Basics
 
-## 🎯 Objectifs pédagogiques
+Ce projet est une introduction aux concepts de base de Node.js, comprenant :
+- L'utilisation de Node.js avec JavaScript
+- Les opérations d'entrée/sortie (stdin, stdout)
+- La lecture de fichiers (synchrone et asynchrone)
+- La création de serveurs HTTP avec Node.js natif et Express
+- L'utilisation d'ES6 avec Babel-node
 
-À l'issue de ce projet, vous serez capable d'expliquer et de mettre en œuvre sans l'aide de Google :
+## Installation
 
-- L'exécution de JavaScript à l’aide de Node.js
-- L’utilisation des modules Node.js
-- La lecture de fichiers (de manière synchrone et asynchrone) via des modules spécifiques de Node.js
-- L’utilisation de `process` pour lire les arguments de ligne de commande et accéder à l’environnement
-- La création de serveurs HTTP avec Node.js et Express.js
-- La définition de routes simples et avancées avec Express.js
-- L’utilisation d’ES6 avec Babel
-- L’utilisation de Nodemon pour un développement plus rapide
+```bash
+# Installer les dépendances
+npm install
 
----
+# Pour le serveur complet (full_server), installer également
+npm install --save-dev babel-preset-env
+```
 
-## 🛠️ Configuration requise
+## Structure du Projet
 
-- Éditeurs autorisés : `vi`, `vim`, `emacs`, `Visual Studio Code`
-- Le projet est conçu pour Ubuntu 20.04 LTS
-- Node.js version `20.x.x`
-- Les fichiers doivent se terminer par une nouvelle ligne
-- Les fichiers doivent porter l’extension `.js`
-- Tous les tests doivent être passés avec `npm run test` ou `npm run full-test`
-- Le linting est effectué avec ESLint (standard Airbnb + plugin Jest)
-- Export des fonctions/classes via `module.exports = myFunction;`
-- Fichiers obligatoires à soumettre :
-  - `package.json`
-  - `babel.config.js`
-  - `.eslintrc.js`
-  - `database.csv`
+- `0-console.js` : Affichage simple dans la console
+- `1-stdin.js` : Interaction avec l'utilisateur via stdin/stdout
+- `2-read_file.js` : Lecture synchrone d'un fichier CSV
+- `3-read_file_async.js` : Lecture asynchrone d'un fichier CSV
+- `4-http.js` : Serveur HTTP simple
+- `5-http.js` : Serveur HTTP avec routes
+- `6-http_express.js` : Serveur Express simple
+- `7-http_express.js` : Serveur Express avec routes
+- `full_server/` : Application Express complète avec architecture MVC
+  - `utils.js` : Utilitaires pour la lecture de la base de données
+  - `controllers/` : Contrôleurs de l'application
+  - `routes/` : Routes de l'application
+  - `server.js` : Point d'entrée du serveur
 
----
+## Utilisation
 
-## 🧾 Contenu du projet
+### Scripts Simples
+```bash
+# Exécuter le script console
+node 0-console.js
 
-| Fichier                        | Description                                                                 |
-|-------------------------------|-----------------------------------------------------------------------------|
-| `0-console.js`                | Affiche un message dans la console                                          |
-| `1-stdin.js`                  | Lit une entrée utilisateur depuis la console                               |
-| `2-read_file.js`             | Lit un fichier de manière synchrone et affiche des statistiques            |
-| `3-read_file_async.js`       | Lit un fichier de manière asynchrone avec Promesse                         |
-| `4-http.js`                  | Crée un serveur HTTP simple avec le module `http`                          |
-| `5-http.js`                  | Serveur HTTP affichant le contenu du fichier CSV selon l'URL               |
-| `6-http_express.js`          | Serveur HTTP de base avec Express                                          |
-| `7-http_express.js`          | Serveur Express avancé avec routes conditionnelles                         |
-| `full_server/`               | Serveur modulaire complet (avec MVC)                                       |
+# Exécuter le script stdin
+node 1-stdin.js
 
----
+# Exécuter les scripts de lecture de fichiers
+node 2-read_file.js database.csv
+node 3-read_file_async.js database.csv
 
-## 📂 Arborescence
+# Démarrer les serveurs HTTP
+node 4-http.js
+node 5-http.js database.csv
+node 6-http_express.js
+node 7-http_express.js database.csv
+```
 
+### Serveur Complet (full_server)
+```bash
+# Démarrer le serveur avec babel-node
+npm run dev
+```
 
+## Format du Fichier Database
+
+Le fichier CSV doit avoir le format suivant :
+```csv
+firstname,lastname,age,field
+Johann,Kerbrou,30,CS
+```
+
+## Routes Disponibles
+
+- `GET /` : Page d'accueil
+- `GET /students` : Liste de tous les étudiants
+- `GET /students/:major` : Liste des étudiants par spécialité (CS ou SWE)
+
+## Tests
+
+Pour exécuter les tests :
+```bash
+npm test
+``` 
